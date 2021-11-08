@@ -1,10 +1,20 @@
+
 const express = require('express');
+require('dotenv').config();
 const path = require('path');
 const db = require('./config/connection');
 const routes = require('./routes');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: authMiddleware,
+});
+
+server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -20,13 +30,3 @@ db.once('open', () => {
   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
 });
 
-
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  // Add context to our server so data from the `authMiddleware()` function can pass data to our resolver functions
-  context: authMiddleware,
-});
-
-server.applyMiddleware({ app });
