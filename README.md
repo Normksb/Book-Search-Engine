@@ -1,6 +1,5 @@
 # Book Search Engine
- 
-  
+   
 ![Book Search Engine](https://github.com/Normksb/Book-Search-Engine/blob/main/screenshot.png)
   
 [Here is a link to the deployed app on Heroku](https://nk-book-search-engine.herokuapp.com/)
